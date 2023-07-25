@@ -1,0 +1,33 @@
+{
+  "name": "notes-app",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "prettify": "prettier --write \"**/*.{json,md,scss,css,html,js,cjs}\"",
+    "lint:js": "npx eslint \"{src,libs}/**/*.js\"",
+    "lint:prettify": "prettier --check \"**/*.{json,md,scss,html,js, cjs}\"",
+    "lint:all": "npm run lint:prettify && npm run lint:js"
+  },
+  "dependencies": {
+    "eslint-config-prettier": "8.8.0",
+    "vite": "4.4.7"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "17.6.7",
+    "@commitlint/config-conventional": "17.6.7",
+    "@eslint/js": "8.45.0",
+    "eslint": "8.45.0",
+    "eslint-config-airbnb-base": "15.0.0",
+    "eslint-plugin-import": "2.27.5",
+    "eslint-plugin-promise": "6.1.1",
+    "eslint-plugin-simple-import-sort": "10.0.0",
+    "eslint-plugin-sort-keys-fix": "1.1.2",
+    "eslint-plugin-unicorn": "48.0.1",
+    "husky": "8.0.3",
+    "prettier": "3.0.0"
+  }
+}
