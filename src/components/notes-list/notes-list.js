@@ -81,6 +81,11 @@ class NotesList {
     );
   }
 
+  deleteNote(id) {
+    this.notes = this.notes.filter((note) => note.id !== id);
+    this.render();
+  }
+
   render() {
     const notesContainer = document.querySelector('#app');
     notesContainer.classList.add('container');
@@ -130,6 +135,7 @@ class NotesList {
         note.isArchived,
         this.editNote.bind(this),
         this.saveNote.bind(this),
+        this.deleteNote.bind(this),
       );
       return noteComponent.render();
     });
@@ -148,6 +154,7 @@ class NotesList {
         note.isArchived,
         this.editNote.bind(this),
         this.saveNote.bind(this),
+        this.deleteNote.bind(this),
       );
       return archivedNoteComponent.render();
     });
