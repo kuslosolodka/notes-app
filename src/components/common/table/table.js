@@ -1,4 +1,3 @@
-// eslint-disable-next-line no-unused-vars
 import styles from './table.module.css';
 
 class Table {
@@ -10,27 +9,37 @@ class Table {
 
   render() {
     const table = document.createElement('table');
+    table.classList.add(styles.table);
+
     table.innerHTML = `
-        <caption>${this.caption}</caption>
-        <thead>
-          <tr>
-            ${this.columns.map((column) => `<th>${column}</th>`).join('')}
-          </tr>
-        </thead>
-        <tbody>
-          ${this.data
+      <caption class="${styles['table-caption']}">${this.caption}</caption>
+      <thead>
+        <tr>
+          ${this.columns
             .map(
-              (row) => `
-            <tr>
-              ${this.columns
-                .map((column) => `<td>${row[column]}</td>`)
-                .join('')}
-            </tr>
-          `,
+              (column) =>
+                `<th class="${styles['table-header']}">${column}</th>`,
             )
             .join('')}
-        </tbody>
-      `;
+        </tr>
+      </thead>
+      <tbody>
+        ${this.data
+          .map(
+            (row) => `
+          <tr class="${styles['table-row']}">
+            ${this.columns
+              .map(
+                (column) =>
+                  `<td class="${styles['table-cell']}" data-label="${column}">${row[column]}</td>`,
+              )
+              .join('')}
+          </tr>
+        `,
+          )
+          .join('')}
+      </tbody>
+    `;
 
     return table;
   }
