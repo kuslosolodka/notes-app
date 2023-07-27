@@ -6,10 +6,15 @@ class Button {
     this.onClick = onClick;
   }
 
-  render() {
+  render(buttonStyle) {
     const buttonElement = document.createElement('button');
     buttonElement.textContent = `${this.label}`;
     buttonElement.classList.add(styles.button);
+
+    if (buttonStyle) {
+      buttonElement.classList.add(styles[buttonStyle]);
+    }
+
     buttonElement.addEventListener('click', this.onClick);
     return buttonElement;
   }

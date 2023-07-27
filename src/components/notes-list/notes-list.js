@@ -1,7 +1,5 @@
 import { Button, Modal, Table } from '../common/common';
 import { Note } from '../note/note';
-// eslint-disable-next-line no-unused-vars
-import styles from './notes-list.module.css';
 
 class NotesList {
   constructor() {
@@ -238,7 +236,7 @@ class NotesList {
     const addNoteButton = new Button('Add Note', () => {
       this.addNote();
     });
-    notesContainer.append(addNoteButton.render());
+    notesContainer.append(addNoteButton.render('add-button'));
 
     const summaryContainer = document.createElement('div');
     summaryContainer.id = 'summaryContainer';

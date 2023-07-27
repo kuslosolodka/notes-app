@@ -58,18 +58,18 @@ class Note {
       editForm.render();
     });
 
-    noteItem.append(editButton.render());
+    noteItem.append(editButton.render('edit-button'));
 
     const deleteButton = new Button('Delete', () => {
       this.onDelete(this.id);
     });
-    noteItem.append(deleteButton.render());
+    noteItem.append(deleteButton.render('delete-button'));
 
     const archiveButtonLabel = this.isArchived ? 'Unarchive' : 'Archive';
     const archiveButton = new Button(archiveButtonLabel, () => {
       this.onToggleArchive(this.id);
     });
-    noteItem.append(archiveButton.render());
+    noteItem.append(archiveButton.render('archive-button'));
 
     return noteItem;
   }
