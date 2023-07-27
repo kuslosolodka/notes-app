@@ -86,6 +86,16 @@ class NotesList {
     this.render();
   }
 
+  toggleArchive(id) {
+    this.notes = this.notes.map((note) => {
+      if (note.id === id) {
+        return { ...note, isArchived: !note.isArchived };
+      }
+      return note;
+    });
+    this.render();
+  }
+
   render() {
     const notesContainer = document.querySelector('#app');
     notesContainer.classList.add('container');
@@ -136,6 +146,7 @@ class NotesList {
         this.editNote.bind(this),
         this.saveNote.bind(this),
         this.deleteNote.bind(this),
+        this.toggleArchive.bind(this),
       );
       return noteComponent.render();
     });
@@ -155,6 +166,7 @@ class NotesList {
         this.editNote.bind(this),
         this.saveNote.bind(this),
         this.deleteNote.bind(this),
+        this.toggleArchive.bind(this),
       );
       return archivedNoteComponent.render();
     });
