@@ -55,6 +55,32 @@ class NotesList {
     return this.notes.filter((note) => note.isArchived);
   }
 
+  editNote(id, updatedCategory, updatedName, updatedContent, updatedDate) {
+    this.notes = this.notes.map((note) => {
+      if (note.id === id) {
+        return {
+          ...note,
+          category: updatedCategory,
+          name: updatedName,
+          content: updatedContent,
+          date: updatedDate,
+        };
+      }
+      return note;
+    });
+    this.render();
+  }
+
+  saveNote(id, updatedCategory, updatedName, updatedContent, updatedDate) {
+    this.editNote(
+      id,
+      updatedCategory,
+      updatedName,
+      updatedContent,
+      updatedDate,
+    );
+  }
+
   render() {
     const notesContainer = document.querySelector('#app');
     notesContainer.classList.add('container');
@@ -102,6 +128,8 @@ class NotesList {
         note.content,
         note.createdAt,
         note.isArchived,
+        this.editNote.bind(this),
+        this.saveNote.bind(this),
       );
       return noteComponent.render();
     });
@@ -118,6 +146,8 @@ class NotesList {
         note.content,
         note.createdAt,
         note.isArchived,
+        this.editNote.bind(this),
+        this.saveNote.bind(this),
       );
       return archivedNoteComponent.render();
     });
