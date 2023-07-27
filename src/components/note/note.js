@@ -1,5 +1,4 @@
-import { Button } from '../common/button/button';
-import { Modal } from '../common/modal/modal';
+import { Button, Modal } from '../common/common';
 import styles from './note.module.css';
 
 class Note {

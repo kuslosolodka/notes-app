@@ -1,6 +1,4 @@
-import { Button } from '../common/button/button';
-import { Modal } from '../common/modal/modal';
-import { Table } from '../common/table/table';
+import { Button, Modal, Table } from '../common/common';
 import { Note } from '../note/note';
 // eslint-disable-next-line no-unused-vars
 import styles from './notes-list.module.css';
