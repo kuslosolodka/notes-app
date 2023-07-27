@@ -160,7 +160,6 @@ class NotesList {
 
   render() {
     const notesContainer = document.querySelector('#app');
-    notesContainer.classList.add('container');
     notesContainer.innerHTML = '';
 
     const activeNotesTable = document.createElement('table');

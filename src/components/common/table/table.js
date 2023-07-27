@@ -1,3 +1,6 @@
+// eslint-disable-next-line no-unused-vars
+import styles from './table.module.css';
+
 class Table {
   constructor(columns, data, caption) {
     this.columns = columns;

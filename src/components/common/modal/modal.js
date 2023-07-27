@@ -1,3 +1,6 @@
+// eslint-disable-next-line no-unused-vars
+import styles from './modal.module.css';
+
 class Modal {
   constructor(title, categoryOptions, noteData = {}) {
     this.title = title;

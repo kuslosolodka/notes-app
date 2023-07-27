@@ -1,5 +1,4 @@
 import { Button, Modal } from '../common/common';
-import styles from './note.module.css';
 
 class Note {
   constructor(
@@ -30,7 +29,6 @@ class Note {
 
   render() {
     const noteItem = document.createElement('tr');
-    noteItem.classList.add(styles.note);
 
     noteItem.innerHTML = `
       <td>${this.category}</td>
