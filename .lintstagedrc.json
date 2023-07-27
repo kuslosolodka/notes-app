@@ -1,5 +1,5 @@
 {
   "*.{json,md,scss,html,js}": "npm run lint:prettify",
   "src/**/*.js": "npm run lint:js",
-  "npx stylelint \"**/*.css\"": "npm run lint:css"
+  "**/*.css": "npm run lint:css"
 }
