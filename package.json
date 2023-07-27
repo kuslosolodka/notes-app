@@ -10,7 +10,8 @@
     "prettify": "prettier --write \"**/*.{json,md,scss,css,html,js,cjs}\"",
     "lint:js": "npx eslint \"src/**/*.js\"",
     "lint:prettify": "prettier --check \"**/*.{json,md,scss,html,js, cjs}\"",
-    "lint:all": "npm run lint:prettify && npm run lint:js"
+    "lint:css": "npx stylelint \"**/*.css\"",
+    "lint:all": "npm run lint:prettify && npm run lint:js && npm run lint:css"
   },
   "dependencies": {
     "eslint-config-prettier": "8.8.0",
@@ -28,6 +29,8 @@
     "eslint-plugin-sort-keys-fix": "1.1.2",
     "eslint-plugin-unicorn": "48.0.1",
     "husky": "8.0.3",
-    "prettier": "3.0.0"
+    "prettier": "3.0.0",
+    "stylelint": "15.10.2",
+    "stylelint-config-standard": "34.0.0"
   }
 }
