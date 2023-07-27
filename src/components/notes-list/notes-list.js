@@ -19,7 +19,7 @@ class NotesList {
       },
       {
         id: 2,
-        category: 'Random thought',
+        category: 'Random Thought',
         name: 'Night thought',
         date: '2023-07-27',
         content: 'Why rollers are called rollers?',
@@ -170,6 +170,7 @@ class NotesList {
           <th>Content</th>
           <th>Date</th>
           <th>Created At</th>
+          <th>Actions</th>
         </tr>
       </thead>
       <tbody></tbody>
@@ -185,6 +186,7 @@ class NotesList {
           <th>Content</th>
           <th>Date</th>
           <th>Created At</th>
+          <th>Actions</th>
         </tr>
       </thead>
       <tbody></tbody>
