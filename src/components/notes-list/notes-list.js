@@ -1,5 +1,6 @@
 import { Button } from '../common/button/button';
 import { Modal } from '../common/modal/modal';
+import { Table } from '../common/table/table';
 import { Note } from '../note/note';
 // eslint-disable-next-line no-unused-vars
 import styles from './notes-list.module.css';
@@ -125,6 +126,40 @@ class NotesList {
     addForm.render();
   }
 
+  updateSummaryTable() {
+    const summary = {};
+
+    // eslint-disable-next-line no-restricted-syntax
+    for (const note of [...this.getActiveNotes(), ...this.getArchivedNotes()]) {
+      const status = note.isArchived ? 'archivedCount' : 'activeCount';
+      summary[note.category] = summary[note.category] || {
+        activeCount: 0,
+        archivedCount: 0,
+      };
+      // eslint-disable-next-line no-plusplus
+      summary[note.category][status]++;
+    }
+
+    const summaryTableData = Object.keys(summary).map((category) => {
+      const { activeCount, archivedCount } = summary[category];
+      return {
+        Category: category,
+        'Active Count': activeCount,
+        'Archived Count': archivedCount,
+      };
+    });
+
+    const summaryTable = new Table(
+      ['Category', 'Active Count', 'Archived Count'],
+      summaryTableData,
+      'Notes Summary',
+    );
+
+    const summaryContainer = document.querySelector('#summaryContainer');
+    summaryContainer.innerHTML = '';
+    summaryContainer.append(summaryTable.render());
+  }
+
   render() {
     const notesContainer = document.querySelector('#app');
     notesContainer.classList.add('container');
@@ -207,6 +242,12 @@ class NotesList {
       this.addNote();
     });
     notesContainer.append(addNoteButton.render());
+
+    const summaryContainer = document.createElement('div');
+    summaryContainer.id = 'summaryContainer';
+    notesContainer.append(summaryContainer);
+
+    this.updateSummaryTable();
 
     return notesContainer;
   }
