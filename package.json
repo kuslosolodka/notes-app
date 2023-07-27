@@ -7,6 +7,7 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
+    "prepare": "husky install",
     "prettify": "prettier --write \"**/*.{json,md,scss,css,html,js,cjs}\"",
     "lint:js": "npx eslint \"src/**/*.js\"",
     "lint:prettify": "prettier --check \"**/*.{json,md,scss,html,js, cjs}\"",
