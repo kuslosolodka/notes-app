@@ -20,6 +20,13 @@ module.exports = {
         sourceType: 'script',
       },
     },
+    {
+      files: ['notes-list.js'],
+      rules: {
+        'no-plusplus': 'off',
+        'no-restricted-syntax': 'off',
+      },
+    },
   ],
   parserOptions: {
     ecmaVersion: 'latest',
@@ -34,4 +41,5 @@ module.exports = {
     'import/no-duplicates': 'error',
     'import/prefer-default-export': 'off',
   },
+  // overrides: []
 };

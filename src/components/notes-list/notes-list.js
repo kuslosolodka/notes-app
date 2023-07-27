@@ -125,14 +125,13 @@ class NotesList {
   updateSummaryTable() {
     const summary = {};
 
-    // eslint-disable-next-line no-restricted-syntax
     for (const note of [...this.getActiveNotes(), ...this.getArchivedNotes()]) {
       const status = note.isArchived ? 'archivedCount' : 'activeCount';
       summary[note.category] = summary[note.category] || {
         activeCount: 0,
         archivedCount: 0,
       };
-      // eslint-disable-next-line no-plusplus
+
       summary[note.category][status]++;
     }
 
