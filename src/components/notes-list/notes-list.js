@@ -1,3 +1,5 @@
+import { Button } from '../common/button/button';
+import { Modal } from '../common/modal/modal';
 import { Note } from '../note/note';
 // eslint-disable-next-line no-unused-vars
 import styles from './notes-list.module.css';
@@ -96,6 +98,33 @@ class NotesList {
     this.render();
   }
 
+  addNote() {
+    const addForm = new Modal('Add Note', ['Task', 'Random Thought', 'Idea']);
+
+    addForm.setOnAddCallback((category, name, content, date) => {
+      const newId = Date.now();
+
+      const newNote = {
+        id: newId,
+        category,
+        name,
+        content,
+        date,
+        createdAt: new Date().toLocaleDateString('en-US', {
+          year: 'numeric',
+          month: 'long',
+          day: 'numeric',
+        }),
+        isArchived: false,
+      };
+
+      this.notes.push(newNote);
+      this.render();
+    });
+
+    addForm.render();
+  }
+
   render() {
     const notesContainer = document.querySelector('#app');
     notesContainer.classList.add('container');
@@ -173,6 +202,11 @@ class NotesList {
 
     archivedNotesBody.append(...archivedNoteElements);
     notesContainer.append(archivedNotesTable);
+
+    const addNoteButton = new Button('Add Note', () => {
+      this.addNote();
+    });
+    notesContainer.append(addNoteButton.render());
 
     return notesContainer;
   }
