@@ -30,6 +30,7 @@ App for managing notes
 
   - 💀 [eslint:recommended](https://eslint.org/docs/latest/rules/) - Default ESLint rules
   - 💀 [eslint-plugin-sonarjs](https://github.com/SonarSource/eslint-plugin-sonarjs) - SonarJS rules for ESLint to detect bugs and suspicious patterns in your code
+  - 💀 [eslint-config-airbnb-base](https://www.npmjs.com/package/eslint-config-airbnb-base) - Airbnb rules config
   - 🔤 Naming:
     - 🦄 [eslint-plugin-unicorn](https://github.com/sindresorhus/eslint-plugin-unicorn) - More than 100 powerful ESLint rules (including more consistent naming patterns)
   - 🔢 Sorting:
