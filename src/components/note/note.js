@@ -38,7 +38,7 @@ class Note {
       <td>${this.createdAt}</td>
     `;
 
-    const editButton = new Button('Edit', () => {
+    const editButton = new Button('', () => {
       const editForm = new Modal(
         'Edit Note',
         ['Task', 'Random Thought', 'Idea'],
@@ -60,12 +60,12 @@ class Note {
 
     noteItem.append(editButton.render('edit-button'));
 
-    const deleteButton = new Button('Delete', () => {
+    const deleteButton = new Button('', () => {
       this.onDelete(this.id);
     });
     noteItem.append(deleteButton.render('delete-button'));
 
-    const archiveButtonLabel = this.isArchived ? 'Unarchive' : 'Archive';
+    const archiveButtonLabel = this.isArchived ? '' : '';
     const archiveButton = new Button(archiveButtonLabel, () => {
       this.onToggleArchive(this.id);
     });
