@@ -11,10 +11,10 @@ class Note {
     content,
     createdAt,
     isArchived,
-    onDelete,
-    onToggleArchive,
     onEdit,
     onSave,
+    onDelete,
+    onToggleArchive,
   ) {
     this.id = id;
     this.category = category;
@@ -24,9 +24,9 @@ class Note {
     this.createdAt = createdAt;
     this.isArchived = isArchived;
     this.onDelete = onDelete;
-    this.onToggleArchive = onToggleArchive;
     this.onEdit = onEdit;
     this.onSave = onSave;
+    this.onToggleArchive = onToggleArchive;
   }
 
   render() {
