@@ -23,9 +23,9 @@ class Note {
     this.content = content;
     this.createdAt = createdAt;
     this.isArchived = isArchived;
-    this.onDelete = onDelete;
     this.onEdit = onEdit;
     this.onSave = onSave;
+    this.onDelete = onDelete;
     this.onToggleArchive = onToggleArchive;
   }
 
