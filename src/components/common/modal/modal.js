@@ -1,4 +1,3 @@
-// eslint-disable-next-line no-unused-vars
 import styles from './modal.module.css';
 
 class Modal {
@@ -81,7 +80,8 @@ class Modal {
         'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])',
       );
       const firstElement = focusableElements[0];
-      const lastElement = focusableElements.at(-1);
+      // eslint-disable-next-line unicorn/prefer-at
+      const lastElement = focusableElements[focusableElements.length - 1];
 
       if (event.key === 'Tab') {
         if (event.shiftKey && document.activeElement === firstElement) {
