@@ -3,3 +3,23 @@
   text-align: center;
   border-bottom: 1px solid #ddd;
 }
+
+@media (width <= 600px) {
+  .table-cell {
+    border-bottom: 1px solid #ddd;
+    display: block;
+    font-size: 0.8em;
+    text-align: right;
+  }
+
+  .table-cell::before {
+    content: attr(data-label);
+    float: left;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+
+  .table-cell:last-child {
+    border-bottom: 0;
+  }
+}
