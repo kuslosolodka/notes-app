@@ -1,13 +1,13 @@
-import { NotesList } from '../components/notes-list/notes-list';
+import { NotesList } from '../components/notes-list/notes-list'
 
 class Notes {
   constructor() {
-    this.notesList = new NotesList();
+    this.notesList = new NotesList()
   }
 
   render() {
-    this.notesList.render();
+    this.notesList.render()
   }
 }
 
-export { Notes };
+export { Notes }

@@ -1,5 +1,5 @@
-import { Button, Modal, Table } from '../common/common';
-import { Note } from '../note/note';
+import { Button, Modal, Table } from '../common/common'
+import { Note } from '../note/note'
 
 class NotesList {
   constructor() {
@@ -56,15 +56,15 @@ class NotesList {
         }),
         isArchived: true,
       },
-    ];
+    ]
   }
 
   getActiveNotes() {
-    return this.notes.filter((note) => !note.isArchived);
+    return this.notes.filter((note) => !note.isArchived)
   }
 
   getArchivedNotes() {
-    return this.notes.filter((note) => note.isArchived);
+    return this.notes.filter((note) => note.isArchived)
   }
 
   editNote(id, updatedCategory, updatedName, updatedContent, updatedDate) {
@@ -76,43 +76,37 @@ class NotesList {
           name: updatedName,
           content: updatedContent,
           date: updatedDate,
-        };
+        }
       }
-      return note;
-    });
-    this.render();
+      return note
+    })
+    this.render()
   }
 
   saveNote(id, updatedCategory, updatedName, updatedContent, updatedDate) {
-    this.editNote(
-      id,
-      updatedCategory,
-      updatedName,
-      updatedContent,
-      updatedDate,
-    );
+    this.editNote(id, updatedCategory, updatedName, updatedContent, updatedDate)
   }
 
   deleteNote(id) {
-    this.notes = this.notes.filter((note) => note.id !== id);
-    this.render();
+    this.notes = this.notes.filter((note) => note.id !== id)
+    this.render()
   }
 
   toggleArchive(id) {
     this.notes = this.notes.map((note) => {
       if (note.id === id) {
-        return { ...note, isArchived: !note.isArchived };
+        return { ...note, isArchived: !note.isArchived }
       }
-      return note;
-    });
-    this.render();
+      return note
+    })
+    this.render()
   }
 
   addNote() {
-    const addForm = new Modal('Add Note', ['Task', 'Random Thought', 'Idea']);
+    const addForm = new Modal('Add Note', ['Task', 'Random Thought', 'Idea'])
 
     addForm.setOnAddCallback((category, name, content, date) => {
-      const newId = Date.now();
+      const newId = Date.now()
 
       const newNote = {
         id: newId,
@@ -126,51 +120,51 @@ class NotesList {
           day: 'numeric',
         }),
         isArchived: false,
-      };
+      }
 
-      this.notes.push(newNote);
-      this.render();
-    });
+      this.notes.push(newNote)
+      this.render()
+    })
 
-    addForm.render();
+    addForm.render()
   }
 
   updateSummaryTable() {
-    const summary = {};
+    const summary = {}
 
     for (const note of [...this.getActiveNotes(), ...this.getArchivedNotes()]) {
-      const status = note.isArchived ? 'archivedCount' : 'activeCount';
+      const status = note.isArchived ? 'archivedCount' : 'activeCount'
       summary[note.category] = summary[note.category] || {
         activeCount: 0,
         archivedCount: 0,
-      };
+      }
 
-      summary[note.category][status]++;
+      summary[note.category][status]++
     }
 
     const summaryTableData = Object.keys(summary).map((category) => {
-      const { activeCount, archivedCount } = summary[category];
+      const { activeCount, archivedCount } = summary[category]
       return {
         Category: category,
         'Active Count': activeCount,
         'Archived Count': archivedCount,
-      };
-    });
+      }
+    })
 
     const summaryTable = new Table(
       ['Category', 'Active Count', 'Archived Count'],
       summaryTableData,
       'Notes Summary',
-    );
+    )
 
-    const summaryContainer = document.querySelector('#summaryContainer');
-    summaryContainer.innerHTML = '';
-    summaryContainer.append(summaryTable.render());
+    const summaryContainer = document.querySelector('#summaryContainer')
+    summaryContainer.innerHTML = ''
+    summaryContainer.append(summaryTable.render())
   }
 
   render() {
-    const notesContainer = document.querySelector('#app');
-    notesContainer.innerHTML = '';
+    const notesContainer = document.querySelector('#app')
+    notesContainer.innerHTML = ''
 
     const activeNoteElements = this.getActiveNotes().map((note) => {
       const noteComponent = new Note(
@@ -185,9 +179,9 @@ class NotesList {
         this.saveNote.bind(this),
         this.deleteNote.bind(this),
         this.toggleArchive.bind(this),
-      );
-      return noteComponent.render();
-    });
+      )
+      return noteComponent.render()
+    })
 
     const archivedNoteElements = this.getArchivedNotes().map((note) => {
       const archivedNoteComponent = new Note(
@@ -202,48 +196,48 @@ class NotesList {
         this.saveNote.bind(this),
         this.deleteNote.bind(this),
         this.toggleArchive.bind(this),
-      );
-      return archivedNoteComponent.render();
-    });
+      )
+      return archivedNoteComponent.render()
+    })
 
     const activeNotesTable = new Table(
       ['Category', 'Name', 'Content', 'Date', 'Created At', 'Actions'],
       activeNoteElements,
       'Active Notes',
-    ).render();
+    ).render()
 
-    const activeNotesTbody = activeNotesTable.querySelector('tbody');
-    activeNotesTbody.innerHTML = '';
+    const activeNotesTbody = activeNotesTable.querySelector('tbody')
+    activeNotesTbody.innerHTML = ''
 
-    activeNotesTbody.append(...activeNoteElements);
+    activeNotesTbody.append(...activeNoteElements)
 
     const archivedNotesTable = new Table(
       ['Category', 'Name', 'Content', 'Date', 'Created At', 'Actions'],
       archivedNoteElements,
       'Archived Notes',
-    ).render();
+    ).render()
 
-    const archivedNotesTbody = archivedNotesTable.querySelector('tbody');
-    archivedNotesTbody.innerHTML = '';
+    const archivedNotesTbody = archivedNotesTable.querySelector('tbody')
+    archivedNotesTbody.innerHTML = ''
 
-    archivedNotesTbody.append(...archivedNoteElements);
+    archivedNotesTbody.append(...archivedNoteElements)
 
-    notesContainer.append(activeNotesTable);
-    notesContainer.append(archivedNotesTable);
+    notesContainer.append(activeNotesTable)
+    notesContainer.append(archivedNotesTable)
 
     const addNoteButton = new Button('Add Note', () => {
-      this.addNote();
-    });
-    notesContainer.append(addNoteButton.render('add-button'));
+      this.addNote()
+    })
+    notesContainer.append(addNoteButton.render('add-button'))
 
-    const summaryContainer = document.createElement('div');
-    summaryContainer.id = 'summaryContainer';
-    notesContainer.append(summaryContainer);
+    const summaryContainer = document.createElement('div')
+    summaryContainer.id = 'summaryContainer'
+    notesContainer.append(summaryContainer)
 
-    this.updateSummaryTable();
+    this.updateSummaryTable()
 
-    return notesContainer;
+    return notesContainer
   }
 }
 
-export { NotesList };
+export { NotesList }

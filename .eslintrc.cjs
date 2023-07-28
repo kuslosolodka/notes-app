@@ -41,5 +41,4 @@ module.exports = {
     'import/no-duplicates': 'error',
     'import/prefer-default-export': 'off',
   },
-  // overrides: []
-};
+}

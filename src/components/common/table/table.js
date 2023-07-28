@@ -1,15 +1,15 @@
-import styles from './table.module.css';
+import styles from './table.module.css'
 
 class Table {
   constructor(columns, data, caption) {
-    this.columns = columns;
-    this.data = data;
-    this.caption = caption;
+    this.columns = columns
+    this.data = data
+    this.caption = caption
   }
 
   render() {
-    const table = document.createElement('table');
-    table.classList.add(styles.table);
+    const table = document.createElement('table')
+    table.classList.add(styles.table)
 
     table.innerHTML = `
       <caption class="${styles['table-caption']}">${this.caption}</caption>
@@ -39,10 +39,10 @@ class Table {
           )
           .join('')}
       </tbody>
-    `;
+    `
 
-    return table;
+    return table
   }
 }
 
-export { Table };
+export { Table }

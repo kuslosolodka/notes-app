@@ -1,15 +1,15 @@
-import styles from './modal.module.css';
+import styles from './modal.module.css'
 
 class Modal {
   constructor(title, categoryOptions, noteData = {}) {
-    this.title = title;
-    this.categoryOptions = categoryOptions;
-    this.noteData = noteData;
+    this.title = title
+    this.categoryOptions = categoryOptions
+    this.noteData = noteData
   }
 
   render() {
-    const formDialog = document.createElement('dialog');
-    formDialog.classList.add(styles.dialog);
+    const formDialog = document.createElement('dialog')
+    formDialog.classList.add(styles.dialog)
     formDialog.innerHTML = `
       <form class="${styles.form}">
         <label for="noteCategory" class="${styles.label}">Category:</label>
@@ -46,65 +46,65 @@ class Modal {
           this.noteData.id ? 'Save' : 'Add'
         }</button>
       </form>
-    `;
+    `
 
-    const cancelNoteButton = formDialog.querySelector('#cancelNote');
+    const cancelNoteButton = formDialog.querySelector('#cancelNote')
     cancelNoteButton.addEventListener('click', () => {
-      formDialog.close();
-    });
+      formDialog.close()
+    })
 
-    const saveNoteButton = formDialog.querySelector('#saveNote');
+    const saveNoteButton = formDialog.querySelector('#saveNote')
     saveNoteButton.addEventListener('click', (event) => {
-      event.preventDefault();
-      const category = formDialog.querySelector('#noteCategory').value;
-      const name = formDialog.querySelector('#noteName').value;
-      const content = formDialog.querySelector('#noteContent').value;
-      const date = formDialog.querySelector('#noteDate').value;
+      event.preventDefault()
+      const category = formDialog.querySelector('#noteCategory').value
+      const name = formDialog.querySelector('#noteName').value
+      const content = formDialog.querySelector('#noteContent').value
+      const date = formDialog.querySelector('#noteDate').value
 
       if (!category || !name || !content || !date) {
-        alert('Please fill in all required fields.');
-        return;
+        alert('Please fill in all required fields.')
+        return
       }
 
       if (this.noteData.id) {
-        this.onSave(this.noteData.id, category, name, content, date);
+        this.onSave(this.noteData.id, category, name, content, date)
       } else {
-        this.onAdd(category, name, content, date);
+        this.onAdd(category, name, content, date)
       }
 
-      formDialog.close();
-    });
+      formDialog.close()
+    })
 
     formDialog.addEventListener('keydown', (event) => {
       const focusableElements = formDialog.querySelectorAll(
         'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])',
-      );
-      const firstElement = focusableElements[0];
+      )
+      const firstElement = focusableElements[0]
       // eslint-disable-next-line unicorn/prefer-at
-      const lastElement = focusableElements[focusableElements.length - 1];
+      const lastElement = focusableElements[focusableElements.length - 1]
 
       if (event.key === 'Tab') {
         if (event.shiftKey && document.activeElement === firstElement) {
-          event.preventDefault();
-          lastElement.focus();
+          event.preventDefault()
+          lastElement.focus()
         } else if (!event.shiftKey && document.activeElement === lastElement) {
-          event.preventDefault();
-          firstElement.focus();
+          event.preventDefault()
+          firstElement.focus()
         }
       }
-    });
+    })
 
-    document.body.append(formDialog);
-    formDialog.showModal();
+    document.body.append(formDialog)
+    formDialog.showModal()
   }
 
   setOnAddCallback(callback) {
-    this.onAdd = callback;
+    this.onAdd = callback
   }
 
   setOnSaveCallback(callback) {
-    this.onSave = callback;
+    this.onSave = callback
   }
 }
 
-export { Modal };
+export { Modal }
