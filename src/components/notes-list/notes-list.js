@@ -10,7 +10,7 @@ class NotesList {
         name: 'Important thing',
         date: '2023-07-26',
         content: 'Chilling',
-        createdAt: new Date().toLocaleDateString('en-US', {
+        createdAt: new Date('2023-06-26').toLocaleDateString('en-US', {
           year: 'numeric',
           month: 'long',
           day: 'numeric',
@@ -23,7 +23,7 @@ class NotesList {
         name: 'Night thought',
         date: '2023-07-27',
         content: 'Why rollers are called rollers?',
-        createdAt: new Date().toLocaleDateString('en-US', {
+        createdAt: new Date('2022-05-05').toLocaleDateString('en-US', {
           year: 'numeric',
           month: 'long',
           day: 'numeric',
@@ -36,7 +36,7 @@ class NotesList {
         name: 'Business idea',
         date: '2023-07-26',
         content: 'Build ice cream shop',
-        createdAt: new Date().toLocaleDateString('en-US', {
+        createdAt: new Date('2021-06-06').toLocaleDateString('en-US', {
           year: 'numeric',
           month: 'long',
           day: 'numeric',
