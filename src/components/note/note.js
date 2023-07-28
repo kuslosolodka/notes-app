@@ -1,4 +1,6 @@
 import { Button, Modal } from '../common/common';
+// eslint-disable-next-line no-unused-vars
+import styles from './note.module.css';
 
 class Note {
   constructor(
