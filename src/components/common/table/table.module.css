@@ -30,7 +30,7 @@
   text-transform: uppercase;
 }
 
-@media (max-width: 600px) {
+@media (width <= 600px) {
   .table {
     border: 0;
   }
