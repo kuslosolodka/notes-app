@@ -43,6 +43,19 @@ class NotesList {
         }),
         isArchived: true,
       },
+      {
+        id: 6,
+        category: 'Task',
+        name: 'Earn 1 billion dollars',
+        date: '2023-07-26',
+        content: 'Impossible, but dreams bigger',
+        createdAt: new Date('2021-07-08').toLocaleDateString('en-US', {
+          year: 'numeric',
+          month: 'long',
+          day: 'numeric',
+        }),
+        isArchived: true,
+      },
     ];
   }
 
@@ -159,41 +172,6 @@ class NotesList {
     const notesContainer = document.querySelector('#app');
     notesContainer.innerHTML = '';
 
-    const activeNotesTable = document.createElement('table');
-    activeNotesTable.innerHTML = `
-      <caption>Active Notes</caption>
-      <thead>
-        <tr>
-          <th>Category</th>
-          <th>Name</th>
-          <th>Content</th>
-          <th>Date</th>
-          <th>Created At</th>
-          <th>Actions</th>
-        </tr>
-      </thead>
-      <tbody></tbody>
-    `;
-
-    const archivedNotesTable = document.createElement('table');
-    archivedNotesTable.innerHTML = `
-      <caption>Archived Notes</caption>
-      <thead>
-        <tr>
-          <th>Category</th>
-          <th>Name</th>
-          <th>Content</th>
-          <th>Date</th>
-          <th>Created At</th>
-          <th>Actions</th>
-        </tr>
-      </thead>
-      <tbody></tbody>
-    `;
-
-    const activeNotesBody = activeNotesTable.querySelector('tbody');
-    const archivedNotesBody = archivedNotesTable.querySelector('tbody');
-
     const activeNoteElements = this.getActiveNotes().map((note) => {
       const noteComponent = new Note(
         note.id,
@@ -210,9 +188,6 @@ class NotesList {
       );
       return noteComponent.render();
     });
-
-    activeNotesBody.append(...activeNoteElements);
-    notesContainer.append(activeNotesTable);
 
     const archivedNoteElements = this.getArchivedNotes().map((note) => {
       const archivedNoteComponent = new Note(
@@ -231,7 +206,29 @@ class NotesList {
       return archivedNoteComponent.render();
     });
 
-    archivedNotesBody.append(...archivedNoteElements);
+    const activeNotesTable = new Table(
+      ['Category', 'Name', 'Content', 'Date', 'Created At', 'Actions'],
+      activeNoteElements,
+      'Active Notes',
+    ).render();
+
+    const activeNotesTbody = activeNotesTable.querySelector('tbody');
+    activeNotesTbody.innerHTML = '';
+
+    activeNotesTbody.append(...activeNoteElements);
+
+    const archivedNotesTable = new Table(
+      ['Category', 'Name', 'Content', 'Date', 'Created At', 'Actions'],
+      archivedNoteElements,
+      'Archived Notes',
+    ).render();
+
+    const archivedNotesTbody = archivedNotesTable.querySelector('tbody');
+    archivedNotesTbody.innerHTML = '';
+
+    archivedNotesTbody.append(...archivedNoteElements);
+
+    notesContainer.append(activeNotesTable);
     notesContainer.append(archivedNotesTable);
 
     const addNoteButton = new Button('Add Note', () => {

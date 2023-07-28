@@ -1,5 +1,4 @@
 import { Button, Modal } from '../common/common';
-// eslint-disable-next-line no-unused-vars
 import styles from './note.module.css';
 
 class Note {
@@ -33,11 +32,11 @@ class Note {
     const noteItem = document.createElement('tr');
 
     noteItem.innerHTML = `
-      <td>${this.category}</td>
-      <td>${this.name}</td>
-      <td>${this.content}</td>
-      <td>${this.date}</td>
-      <td>${this.createdAt}</td>
+      <td class="${styles['table-cell']}">${this.category}</td>
+      <td class="${styles['table-cell']}">${this.name}</td>
+      <td class="${styles['table-cell']}">${this.content}</td>
+      <td class="${styles['table-cell']}">${this.date}</td>
+      <td class="${styles['table-cell']}">${this.createdAt}</td>
     `;
 
     const editButton = new Button('', () => {
