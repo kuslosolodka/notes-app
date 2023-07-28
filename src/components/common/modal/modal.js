@@ -10,11 +10,11 @@ class Modal {
 
   render() {
     const formDialog = document.createElement('dialog');
-    formDialog.classList.add();
+    formDialog.classList.add(styles.dialog);
     formDialog.innerHTML = `
-      <form>
-        <label for="noteCategory">Category:</label>
-        <select id="noteCategory" required>
+      <form class="${styles.form}">
+        <label for="noteCategory" class="${styles.label}">Category:</label>
+        <select id="noteCategory" class="${styles.select}" required>
           ${this.categoryOptions
             .map(
               (option) =>
@@ -28,17 +28,17 @@ class Modal {
         <label for="noteName">Name:</label>
         <input type="text" id="noteName" value="${
           this.noteData.name || ''
-        }" required>
+        }" class="${styles.input}" required>
 
         <label for="noteContent">Content:</label>
-        <textarea id="noteContent" required>${
+        <textarea id="noteContent" class="${styles.textarea}"required>${
           this.noteData.content || ''
         }</textarea>
 
         <label for="noteDate">Date:</label>
         <input type="date" id="noteDate" value="${
           this.noteData.date || ''
-        }" required>
+        }" class="${styles.input}" required>
 
         <button type="button" id="cancelNote">${
           this.noteData.id ? 'Cancel' : 'Close'
@@ -62,6 +62,11 @@ class Modal {
       const content = formDialog.querySelector('#noteContent').value;
       const date = formDialog.querySelector('#noteDate').value;
 
+      if (!category || !name || !content || !date) {
+        alert('Please fill in all required fields.');
+        return;
+      }
+
       if (this.noteData.id) {
         this.onSave(this.noteData.id, category, name, content, date);
       } else {
@@ -69,6 +74,24 @@ class Modal {
       }
 
       formDialog.close();
+    });
+
+    formDialog.addEventListener('keydown', (event) => {
+      const focusableElements = formDialog.querySelectorAll(
+        'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])',
+      );
+      const firstElement = focusableElements[0];
+      const lastElement = focusableElements.at(-1);
+
+      if (event.key === 'Tab') {
+        if (event.shiftKey && document.activeElement === firstElement) {
+          event.preventDefault();
+          lastElement.focus();
+        } else if (!event.shiftKey && document.activeElement === lastElement) {
+          event.preventDefault();
+          firstElement.focus();
+        }
+      }
     });
 
     document.body.append(formDialog);
