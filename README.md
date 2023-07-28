@@ -43,7 +43,3 @@ App for managing notes
   - 💣 [lint-staged](https://github.com/okonet/lint-staged) - Linting git staged filed
 - Code formatting:
   - 🎀 [Prettier](https://prettier.io/) - Code formatting
-
-## Local setup
-
-Soon
